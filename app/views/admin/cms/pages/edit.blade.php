@@ -28,6 +28,7 @@
 			<ul id="myTab" class="nav nav-tabs">
 			  <li class="active"><a href="#general" data-toggle="tab">Genel</a></li>
 			  <li class=""><a href="#images" data-toggle="tab">Resimler</a></li>
+			  <li class=""><a href="#articles" data-toggle="tab">Makaleler</a></li>
 			</ul>
 			<div id="myTabContent" class="tab-content">
 			  <div class="tab-pane fade in active" id="general">
@@ -109,7 +110,24 @@
 	        			</tr>
         			</tfoot>
 	        	</table>
-	        </div>
+	        	</div>
+	        	<div class="tab-pane" id="articles">
+	        		<table class="table table-striped">
+	        			<thead>
+		        			<tr>
+		        				<th>Makale Adı</th>
+		        				<td></td>
+		        			</tr>
+	        			</thead>
+	        			<tbody>
+	        				@foreach($page->articles as $article)
+		        				<tr>
+		        					<td><a href="{{URL::to('cms-articles/'.$article->id)}}">{{$article->title}}</a></td>
+		        				</tr>
+	        				@endforeach
+	        			</tbody>
+	        		</table>
+	        	</div>
 			</div>
 
 		  

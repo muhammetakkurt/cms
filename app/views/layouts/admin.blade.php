@@ -55,7 +55,7 @@
 
   <nav id="top-bar" class="collapse top-bar-collapse">
 
-    <ul class="nav navbar-nav pull-left">
+    <!--ul class="nav navbar-nav pull-left">
       <li class="">
         <a href="{{URL::to('dashboard')}}">
           <i class="fa fa-home"></i> 
@@ -76,7 +76,7 @@
           </ul>
         </li>
         
-    </ul>
+    </ul-->
 
     <ul class="nav navbar-nav pull-right">
       @if(Session::has('adminLoginId'))
@@ -150,7 +150,7 @@
           <ul class="sub-nav">
             <li>
               <a href="{{URL::to('cms-pages')}}">
-                <i class="fa fa-hand-o-up"></i>
+                <i class="fa fa-file"></i>
                 Sayfalar
               </a>
             </li>
@@ -184,7 +184,7 @@
           <ul class="sub-nav">
             <li>
               <a href="{{URL::to('users')}}">
-                <i class="fa fa-table"></i> 
+                <i class="fa fa-user"></i> 
                 Kullanıcılar
               </a>
             </li>   
