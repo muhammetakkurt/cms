@@ -5,6 +5,7 @@ class CmsArticle extends Eloquent
 	protected $table = 'cms_articles';
 	public $timestamps = true;
 	protected static $rules = array(
+		'page_id' => 'required',
 		'title'	=>	'required',
 		'summary'	=>	'required',
 		'content'	=>	'required',
@@ -12,6 +13,7 @@ class CmsArticle extends Eloquent
 		'published_off'	=>	'date|after_field:published_on',
 	);
 	protected static $messages = array(
+		'page_id.required'	=>	'Lütfen makale için bir sayfa seçiniz',
 		'title.required'	=>	'Lütfen makale için bir başlık girin',
 		'summary.required'	=>	'Lütfen makale için bir açıklama girin',
 		'content.required'	=>	'Lütfen makale içeriğini girmeyi unutmayın',
@@ -28,9 +30,9 @@ class CmsArticle extends Eloquent
         return Validator::make($data, static::$rules, static::$messages);
     }
 
-	public function pages()
+	public function page()
 	{
-		return $this->belongsToMany('CmsPage', 'cms_pages_has_articles', 'cms_article_id');
+		return $this->belongsTo('CmsPage' , 'page_id');
 	}
 
 	public function comments()

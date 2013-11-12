@@ -91,6 +91,7 @@ class AdminCmsPageController extends \BaseController {
 		}
 		if ($page->save())
 		{
+			/*
 			if (isset($inputs['article']))
 			{
 				foreach ($inputs['article'] as $article) 
@@ -108,6 +109,7 @@ class AdminCmsPageController extends \BaseController {
 					$page->articles()->attach($article['id'] , $articleSortOrder);
 				}	
 			}
+			*/
 
 			if(isset($inputs['medias']))
 			{
@@ -218,6 +220,7 @@ class AdminCmsPageController extends \BaseController {
 		}
 		if ($page->save())
 		{
+			/*
 			if (isset($inputs['article']))
 			{
 				$pageArticlesArray = array();
@@ -283,7 +286,7 @@ class AdminCmsPageController extends \BaseController {
 					$page->articles()->detach($article->id);
 				}
 			}
-
+			*/
 
 			if (isset($inputs['medias']))
 			{	

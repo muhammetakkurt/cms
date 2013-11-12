@@ -25,7 +25,6 @@
 		<div class="col-md-12">
 			<ul id="myTab" class="nav nav-tabs">
 			  <li class="active"><a href="#general" data-toggle="tab">Genel</a></li>
-			  <li><a href="#articles" data-toggle="tab">Makaleler</a></li>
 			  <li><a href="#images" data-toggle="tab">Resimler</a></li>
 			</ul>
 			<div id="myTabContent" class="tab-content">
@@ -69,25 +68,6 @@
 			         	{{	Form::text('sort_order','',array('class' => 'col-md-1 form-control'))}}
 			        </div>
 			      </div>
-			  </div>
-			  <div class="tab-pane fade" id="articles">
-			    <div class="row">
-			    	<div class="col-md-4">
-			    		<input type="text" name="articles_search" class="text tinymid form-control" />
-			    	</div>
-			    	<div class="col-md-8">
-			    		<span class="note">Oto tamamlayıcı mevcut</span>
-			    	</div>
-			    </div>
-			    
-			  	<table class="table table-bordered">
-			  		<thead>
-			  			<th>Makale Adı</th>
-			  			<th>Sıralama</th>
-			  			<td class="butontd"></th>
-			  		</thead>
-			  		<tbody></tbody>
-			  	</table>
 			  </div>
 			  <div class="tab-pane fade" id="images">
 			    <table class="table table-striped">
@@ -187,31 +167,4 @@
       format: 'yyyy-mm-dd',
       weekStart: 1,
 	});
-
-	$('input[name=\'articles_search\']').autocomplete({
-		delay: 100,
-		source: function(request, response) {
-			$.ajax({
-				url: '{{URL::to('ajaxcms/cms-articles')}}',
-				type: 'POST',
-				dataType: 'json',
-				data: 'filter_name=' +  encodeURIComponent(request.term),
-				success: function(data) {		
-					response($.map(data, function(item) {
-						return {
-							label: item.name,
-							value: item.id
-						}
-					}));
-				}
-			});
-	}, 
-	select: function(event, ui) {
-			$('#related_article'+ui.item.value).remove();
-			$('#articles table tbody').append('<tr id="related_article' + ui.item.value + '"><td>' + ui.item.label + '</td><td><input type="text" class="col-md-2 local-form-control text-right" name="article['+ui.item.value+'][sort_order]" value="' + ui.item.value + '" /></td><td><img src="{{URL::to('assets/img/delete.png')}}"  onclick="$(this).parent().parent().remove();" /><input type="hidden" name="article['+ui.item.value+'][id]" value="' + ui.item.value + '" /><input type="hidden" name="article['+ui.item.value+'][name]" value="' + ui.item.label + '" /></td></tr>');
-	
-			return false;
-		}
-	});
-
 @stop

@@ -32,7 +32,7 @@ class CmsPage extends Eloquent
 
 	public function articles()
 	{
-		return $this->belongsToMany('CmsArticle', 'cms_pages_has_articles', 'cms_page_id')->withPivot('sort_order');
+		return $this->hasMany('CmsArticle', 'page_id');
 	}
 
 	public function medias()

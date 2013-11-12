@@ -40,7 +40,8 @@ class AdminCmsArticleController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('admin.cms.articles.create');
+
+		return View::make('admin.cms.articles.create')->with('pages' , CmsPage::lists('name' , 'id'));
 	}
 
 	/**
@@ -55,6 +56,7 @@ class AdminCmsArticleController extends \BaseController {
 		$validation = $article->validate($inputs);
 		if(!$validation->fails())
 		{
+			$article->page_id = $inputs['page_id'];
 			$article->title = $inputs['title'];
 			$article->summary = $inputs['summary'];
 			$article->content = $inputs['content'];
@@ -139,7 +141,7 @@ class AdminCmsArticleController extends \BaseController {
 	{
 		$article = CmsArticle::find($id);
 		$data = array('article' => $article );
-		return View::make('admin.cms.articles.edit' , $data);
+		return View::make('admin.cms.articles.edit' , $data)->with('pages' , CmsPage::lists('name' , 'id'));;
 	}
 
 	/**
@@ -155,6 +157,7 @@ class AdminCmsArticleController extends \BaseController {
 		$validation = $article->validate($inputs);
 		if(!$validation->fails())
 		{
+			$article->page_id = $inputs['page_id'];
 			$article->title = $inputs['title'];
 			$article->summary = $inputs['summary'];
 			$article->content = $inputs['content'];

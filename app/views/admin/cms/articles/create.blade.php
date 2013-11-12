@@ -43,6 +43,14 @@
 							</div>
          				</div>
 				    </div>
+				    
+				    <div class="row">
+				        <label for="title" class="control-label col-md-12">Sayfa</label>
+				        <div class="col-md-3">
+				         	{{ Form::select('page_id', $pages, null , array('class' => 'form-control'))}}
+				        </div>
+				    </div>
+
 					<div class="row">
 				        <label for="title" class="control-label col-md-12">Makale Başlık </label>
 				        <div class="col-md-12">

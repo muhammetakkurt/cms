@@ -13,6 +13,7 @@ class CreateCmsArticlesTable extends Migration {
 	{
 		Schema::create('cms_articles', function($table){
 			$table->increments('id');
+			$table->integer('page_id');
 			$table->string('title');
 			$table->longText('summary');
 			$table->longText('content');
