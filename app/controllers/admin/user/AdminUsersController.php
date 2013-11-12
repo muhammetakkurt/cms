@@ -130,12 +130,7 @@ class AdminUsersController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$user = User::find($id);
-		$activities = Activity::where('user_id', $user->id)
-								->orderBy('created_at','desc')
-						  		->paginate(10);
-		$data = array('user' => $user ,'activities' => $activities);
-		return View::make('admin.users.detail',$data);
+		return Redirect::back();
 	}
 
 	/**
@@ -155,24 +150,9 @@ class AdminUsersController extends \BaseController {
 		}
 		$group = $user->getGroups();
 			
-		$cities = City::OrderBy('name')->get();
-		$cityselect = array(0 => 'Seçiniz');
-		foreach ($cities as $city) {
-			$cityselect[$city->id] = $city->name;
-		}
+		
 
-		$townselect = array(0 => 'Seçiniz');
-		if ($user->city_id>0)
-		{
-			$towns = Town::where('city_id' , '=' , $user->city_id)->orderBy('name')->get();
-			
-			foreach ($towns as $town) {
-			$townselect[$town->id] = $town->name;
-			}
-
-		}
-
-		$data = array('user' => $user ,'groups' => $groupsselect , 'group_id' => $group[0]['id'] , 'cities' => $cityselect , 'towns' => $townselect);
+		$data = array('user' => $user ,'groups' => $groupsselect , 'group_id' => $group[0]['id']);
 		return View::make('admin.users.edit',$data);
 	}
 

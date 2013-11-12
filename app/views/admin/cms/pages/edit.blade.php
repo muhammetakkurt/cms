@@ -18,16 +18,13 @@
 		{{	Form::open(array('url' => 'cms-pages/'.$page->id , 'method' => 'PUT', 'id' => 'editCmsPageForm'))	}}	
 
 
-		<div class="span12">
-			
-			<legend>
-				{{$page->name.' Düzenleme'}} 
-				<div class="span3 pull-right text-right">
-					<button type="submit" class="btn"><i class="icon-ok"></i>&nbsp; Kaydet</button>
-				</div>
-			</legend>
+		<div class="col-md-12">
+			<div class="col-md-3 pull-right text-right">
+				<button type="submit" class="btn btn-warning"><i class="icon-ok"></i>&nbsp; Kaydet</button>
+			</div>	
+			<h4>{{$page->name.' Düzenleme'}}</h4>
 		</div>
-		<div class="span12">
+		<div class="col-md-12">
 			<ul id="myTab" class="nav nav-tabs">
 			  <li class="active"><a href="#general" data-toggle="tab">Genel</a></li>
 			  <li><a href="#articles" data-toggle="tab">Makaleler</a></li>
@@ -37,46 +34,51 @@
 			  <div class="tab-pane fade in active" id="general">
 			  	<div class="control-group">
 	         			<div class="row">
-	         				<div class="span12">
-	         					<div class="span3" style="margin-left: 0px;">
-	         						<label for="published_on" class="control-label">Yayınlanma Tarihi </label>
-		         					<div class="input-append">
-									  {{	Form::text('published_on',$page->published_on,array('placeholder' => 'Yayınlanma Tarihi', 'id' => 'page_published_on' , 'class' => 'span2')) }}
-									  <span class="add-on"><i class="icon-list-alt"></i></span>
-									</div>
+	         				<div class="col-md-3" style="margin-left: 0px;">
+         						<label for="published_on" class="control-label">Yayınlanma Tarihi </label>
+	         					<div class="input-append">
+								  {{	Form::text('published_on',$page->published_on,array('placeholder' => 'Yayınlanma Tarihi', 'id' => 'page_published_on' , 'class' => 'col-md-2 form-control')) }}
+								  <span class="add-on"><i class="icon-list-alt"></i></span>
 								</div>
-								<div class="span4">
-									<label for="published_off" class="control-label">Yayından Çekme Tarihi </label>
-									<div class="input-append">
-									  {{	Form::text('published_off',$page->published_off,array('placeholder' => 'Yayından Çekme Tarihi', 'id' => 'page_published_off' , 'class' => 'span2')) }}
-									  <span class="add-on"><i class="icon-list-alt"></i></span>
-									</div>
+							</div>
+							<div class="col-md-4">
+								<label for="published_off" class="control-label">Yayından Çekme Tarihi </label>
+								<div class="input-append">
+								  {{	Form::text('published_off',$page->published_off,array('placeholder' => 'Yayından Çekme Tarihi', 'id' => 'page_published_off' , 'class' => 'col-md-2 form-control')) }}
+								  <span class="add-on"><i class="icon-list-alt"></i></span>
 								</div>
-	         				</div>
-	         			</div>
+							</div>
+         				</div>
 				    </div>
-			    <div class="control-group">
-			        <label for="parent_id" class="control-label">Ana Kaynak </label>
-			        <div class="controls">
-			        	{{ Form::select('parent_id', $pages, $page->parent_id)}}
+			    <div class="row">
+			        <label for="parent_id" class="control-label col-md-12">Ana Kaynak </label>
+			        <div class="col-md-6">
+			        	{{ Form::select('parent_id', $pages, $page->parent_id , array('class' => 'form-control'))}}
 			        </div>
 			      </div>
 
-			      <div class="control-group">
-			        <label for="name" class="control-label">Sayfa Adı </label>
-			        <div class="controls">
-			         	{{	Form::text('name',$page->name,array('placeholder' => 'Sayfa Adı', 'required' => ''))}}
+			      <div class="row">
+			        <label for="name" class="control-label col-md-12">Sayfa Adı </label>
+			        <div class="col-md-6">
+			         	{{	Form::text('name',$page->name,array('placeholder' => 'Sayfa Adı', 'required' => '' , 'class' => 'form-control'))}}
 			        </div>
 			      </div>
-			      <div class="control-group">
-			        <label for="name" class="control-label">Sıralama </label>
-			        <div class="controls">
-			         	{{	Form::text('sort_order',$page->sort_order,array('class' => 'span1'))}}
+			      <div class="row">
+			        <label for="name" class="control-label col-md-12">Sıralama </label>
+			        <div class="col-md-6">
+			         	{{	Form::text('sort_order',$page->sort_order,array('class' => 'col-md-1 form-control'))}}
 			        </div>
 			      </div>
 			  </div>
 			  <div class="tab-pane fade" id="articles">
-			    <input type="text" name="articles_search" class="text tinymid span4" /><span class="note">Oto tamamlayıcı mevcut</span>
+			    <div class="row">
+			    	<div class="col-md-4">
+			    		<input type="text" name="articles_search" class="text tinymid form-control" />
+			    	</div>
+			    	<div class="col-md-8">
+			    		<span class="note">Oto tamamlayıcı mevcut</span>
+			    	</div>
+			    </div>
 			  	<table class="table table-bordered">
 			  		<thead>
 			  			<th>Makale Adı</th>
@@ -88,7 +90,7 @@
 
 			  				<tr id="related_article{{$article->id}}">
 			  					<td><a href="{{URL::to('cms-articles/'.$article->id.'/edit')}}" rel="tooltip" title="Detay">{{$article->title}}</a></td>
-			  					<td><input type="text" class="span1 text-right" name="article[{{$article->id}}][sort_order]" value="{{$article->pivot->sort_order}}" /></td>
+			  					<td><input type="text" class="col-md-2 local-form-control text-right" name="article[{{$article->id}}][sort_order]" value="{{$article->pivot->sort_order}}" /></td>
 			  					<td><img src="{{URL::to('assets/img/delete.png')}}"  onclick="$(this).parent().parent().remove();" /><input type="hidden" name="article[{{$article->id}}][id]" value="{{$article->id}}" /><input type="hidden" name="article[{{$article->id}}][name]" value="{{$article->title}}" /></td>
 			  				</tr>
 			  			@endforeach
@@ -116,7 +118,7 @@
 									<img src="<?php echo Request::root().'/assets/thumbnail.php?src='.$media->path?>" alt="" id="preview{{$image_row}}" class="image" onclick="image_upload('image{{$image_row}}','preview{{$image_row}}');" />
 								</td>
 								<td class="centered">
-									<input type="text" name="medias[{{$image_row}}][sort_order]" class="span1 text-right" value="{{$media->pivot->sort_order}}" />
+									<input type="text" name="medias[{{$image_row}}][sort_order]" class="col-md-1 text-right" value="{{$media->pivot->sort_order}}" />
 								</td>			
 								<td class="centered">
 									<input type="button" class="btn btn-danger pull-right" value="Sil" onclick="$('#image-row{{$image_row}}').remove();">
@@ -129,7 +131,7 @@
 	        			<tr>
 	        				<td colspan="4">
 	        					<div class="row pull-right text-right">
-	        						<button type="button" class="btn" onclick="javascript:addImage()">Yeni Resim</button>
+	        						<button type="button" class="btn btn-warning" onclick="javascript:addImage()">Yeni Resim</button>
 	        					</div>
 	        				</td>
 	        			</tr>
@@ -155,7 +157,7 @@
 		{
 			html   = '<tr id="image-row' + image_row + '">';
 			html += '<td class="centered"><input type="hidden" name="medias[' + image_row + '][name]" value="" id="image' + image_row + '" /><input type="hidden" name="medias[' + image_row + '][path]" value="" id="image' + image_row +'_path" /><input type="hidden" name="medias[' + image_row + '][base_url]" value="" id="image' + image_row +'_base_url" /><img src="<?php echo Request::root().'/assets/thumbnail.php?src=&w=100&h=100&zc=1'?>" alt="" id="preview' + image_row + '" class="image" onclick="image_upload(\'image' + image_row + '\', \'preview' + image_row + '\');" /></td>';
-			html += '<td class="centered"><input type="text" name="medias[' + image_row + '][sort_order]" class="span1 text-right" value="1" /></td>';			
+			html += '<td class="centered"><input type="text" name="medias[' + image_row + '][sort_order]" class="col-md-2 local-form-control text-right" value="1" /></td>';			
 			html += '<td class="centered"><input type="button" class="btn btn-danger pull-right" value="Sil" onclick="$(\'#image-row' + image_row  + '\').remove();"></td>';
 			html += '</tr>';
 			
@@ -234,7 +236,7 @@
 	}, 
 	select: function(event, ui) {
 			$('#related_article'+ui.item.value).remove();
-			$('#articles table tbody').append('<tr id="related_article' + ui.item.value + '"><td><a href="{{URL::to('cms-articles')}}/' + ui.item.value + '/edit" rel="tooltip" title="Detay">' + ui.item.label + '</a></td><td><input type="text" class="span1 text-right" name="article['+ui.item.value+'][sort_order]" value="' + ui.item.value + '" /></td><td><img src="{{URL::to('assets/img/delete.png')}}"  onclick="$(this).parent().parent().remove();" /><input type="hidden" name="article['+ui.item.value+'][id]" value="' + ui.item.value + '" /><input type="hidden" name="article['+ui.item.value+'][name]" value="' + ui.item.label + '" /></td></tr>');
+			$('#articles table tbody').append('<tr id="related_article' + ui.item.value + '"><td><a href="{{URL::to('cms-articles')}}/' + ui.item.value + '/edit" rel="tooltip" title="Detay">' + ui.item.label + '</a></td><td><input type="text" class="col-md-2 local-form-control text-right" name="article['+ui.item.value+'][sort_order]" value="' + ui.item.value + '" /></td><td><img src="{{URL::to('assets/img/delete.png')}}"  onclick="$(this).parent().parent().remove();" /><input type="hidden" name="article['+ui.item.value+'][id]" value="' + ui.item.value + '" /><input type="hidden" name="article['+ui.item.value+'][name]" value="' + ui.item.label + '" /></td></tr>');
 	
 			return false;
 		}

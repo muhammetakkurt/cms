@@ -106,10 +106,12 @@ if (Sentry::check()) {
 
 	Route::controller('ajaxcms' , 'AdminCmsAjaxController');
 	//CMS (İçerik Yönetim Sistemi)
+	Route::get('cms-pages/search','AdminCmsPageController@search');
 	Route::post('cms-pages/delete-selected', 'AdminCmsPageController@deleteSelected');
 	Route::resource('cms-pages', 'AdminCmsPageController');	
 
 	//CMS (İçerik Yönetim Sistemi)
+	Route::get('cms-articles/search','AdminCmsArticleController@search');
 	Route::post('cms-articles/delete-selected', 'AdminCmsArticleController@deleteSelected');
 	Route::resource('cms-articles', 'AdminCmsArticleController');	
 

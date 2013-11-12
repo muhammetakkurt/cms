@@ -18,7 +18,7 @@
   <body>
       <div class="container">
         <div class="row">
-          <div class="span6 offset2">
+          <div class="col-md-6 offset2">
             <div class="login">
 
               {{ Form::open(array( 'url' => 'newuser/new-password/'.Request::segment(3) , 'method' => 'POST' , 'class' => 'form-horizontal')) }}

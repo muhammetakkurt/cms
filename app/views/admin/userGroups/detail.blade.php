@@ -5,8 +5,8 @@
 @section('content')
 
     <div class="row">
-        <div class="span12">
-            <a href="{{URL::to('users-groups/'.$usergroup['id'].'/edit')}}" class="btn pull-right">Düzenle</a>
+        <div class="col-md-12">
+            <a href="{{URL::to('users-groups/'.$usergroup['id'].'/edit')}}" class="btn btn-warning pull-right">Düzenle</a>
             <legend>{{$usergroup['name']}} Grup Detayı</legend>
             <table class="table table-striped sortable">
                 <thead>
@@ -14,7 +14,6 @@
                     <th>Ad - Soyad</th>
                     <th>Email</th>
                     <th>Kayıt Tarihi</th>
-                    <th class="butontd"></th>
                     <th class="butontd"></th>
                     <th class="butontd"></th>
                   </tr>
@@ -31,12 +30,11 @@
                     <td><a href="mailto:{{$user->email}}">{{$user->email}}</a></td>
 
                     <td>{{ $user->created_at }}</td>
-                    <td><a href="{{URL::to('users/'.$user->user_id)}}"  class="icon-search"  rel="tooltip" title="Detay">&nbsp;</a></td>
-                        <td><a href="{{URL::to('users/'.$user->user_id.'/edit')}}" class="icon-pencil" rel="tooltip" title="Düzenle">&nbsp;</a>
+                        <td><a href="{{URL::to('users/'.$user->user_id.'/edit')}}" class="fa fa-pencil" rel="tooltip" title="Düzenle">&nbsp;</a>
                         </td>
                         <td>
                             {{ Form::open(array('url' => 'users/'.$user->user_id, 'method' => 'DELETE' , 'style' => 'margin:0;display: inline;' , 'name' => 'silform'.$i , 'id' => 'silform'.$i )) }}
-                            <a href="#myModal"  data-toggle="modal" onclick="$('#silinecek_deger').val({{$i}})" class="icon-trash" rel="tooltip" title="Sil">&nbsp;</a>
+                            <a href="#myModal"  data-toggle="modal" onclick="$('#silinecek_deger').val({{$i}})" class="fa fa-times" rel="tooltip" title="Sil">&nbsp;</a>
                             {{ Form::close() }}
                         </td>
                   </tr>

@@ -26,8 +26,8 @@
 			$i=0;
 			foreach ($users as $user) {
 				$usersSelect[$i]['id'] = $user->id;
-				$usersSelect[$i]['name'] = $user->fullName();
-				$i++;
+				$usersSelect[$i]['name'] = $user->first_name.' '.$user->last_name;
+			$i++;
 			}
 			return json_encode($usersSelect, JSON_UNESCAPED_UNICODE);
 		}

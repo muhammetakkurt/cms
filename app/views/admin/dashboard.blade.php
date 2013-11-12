@@ -4,7 +4,7 @@
 @stop
 @section('content')
     <div class="row">
-    	<div class="span12">
+    	<div class="col-md-12">
     		<div class="well">
     			Sisteme hoşgeldiniz.
     		</div>

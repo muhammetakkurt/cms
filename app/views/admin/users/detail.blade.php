@@ -4,7 +4,7 @@
 @stop
 @section('content')
 <div class="row">
-	<div class="span12">
+	<div class="col-md-12">
 	<legend>{{$user->fullName()}} Aktiviteleri</legend>
 		<table class="table">
 			<thead>

@@ -7,16 +7,14 @@
 <div class="row">
 
 	{{	Form::open(array('url' => 'cms-articles' , 'method' => 'post', 'id' => 'newCmsArticleForm'))	}}	
-	<div class="span12">
-		<legend>
-			Makale Ekleme
-			<div class="span3 pull-right text-right">
-				<button type="submit" class="btn"><i class="icon-ok"></i>&nbsp; Ekle</button>
-			</div>
-		</legend>
+	<div class="col-md-12">
+		<div class="col-md-3 pull-right text-right">
+			<button type="submit" class="btn btn-warning"><i class="icon-ok"></i>&nbsp; Ekle</button>
+		</div>	
+		<h4>{{'Makale Ekleme'}}</h4>
 	</div>
 	
-	<div class="span12">
+	<div class="col-md-12">
 		<div class="tabbable tabs-left">
 	      <ul class="nav nav-tabs">
 	        <li class="active"><a href="#general" data-toggle="tab">Genel</a></li>
@@ -27,42 +25,41 @@
 
 	         		<div class="control-group">
 	         			<div class="row">
-	         				<div class="span12">
-	         					<div class="span3" style="margin-left: 0px;">
-	         						<label for="published_on" class="control-label">Yayınlanma Tarihi </label>
-		         					<div class="input-append">
-									  {{ Form::text('published_on','',array('placeholder' => 'Yayınlanma Tarihi',  'id' => 'article_published_on' , 'class' => 'span2', 'autocomplete' => 'off')) }}
-									  <span class="add-on"><i class="icon-list-alt"></i></span>
-									</div>
+	         				<div class="col-md-3" style="margin-left: 0px;">
+         						<label for="published_on" class="control-label">Yayınlanma Tarihi </label>
+	         					<div class="input-append">
+								  {{ Form::text('published_on','',array('placeholder' => 'Yayınlanma Tarihi',  'id' => 'article_published_on' , 'class' => 'col-md-2 form-control', 'autocomplete' => 'off')) }}
+								  <span class="add-on"><i class="icon-list-alt"></i></span>
 								</div>
-								<div class="span4">
-									<label for="published_off" class="control-label">Yayından Çekme Tarihi </label>
-									<div class="input-append">
-									  {{ Form::text('published_off','',array('placeholder' => 'Yayından Çekme Tarihi',  'id' => 'article_published_off' , 'class' => 'span2', 'autocomplete' => 'off')) }}
-									  <span class="add-on"><i class="icon-list-alt"></i></span>
-									  <button type="button" class="btn clear_published_off">Temizle</button>
-									</div>
+							</div>
+							<div class="col-md-4">
+								<label for="published_off" class="control-label">Yayından Çekme Tarihi </label>
+								<div class="input-group">
+								  {{ Form::text('published_off','',array('placeholder' => 'Yayından Çekme Tarihi',  'id' => 'article_published_off' , 'class' => 'col-md-2 form-control', 'autocomplete' => 'off')) }}
+								  <span class="input-group-btn">
+							  		<button type="button" class="btn btn-danger clear_published_off">Temizle</button>
+							  	  </span>
 								</div>
-	         				</div>
-	         			</div>
+							</div>
+         				</div>
 				    </div>
-					<div class="control-group">
-				        <label for="title" class="control-label">Makale Başlık </label>
-				        <div class="controls">
-				         	{{ Form::text('title','',array('placeholder' => 'Makale Başlık', 'required' => '' , 'class' => 'span4')) }}
+					<div class="row">
+				        <label for="title" class="control-label col-md-12">Makale Başlık </label>
+				        <div class="col-md-12">
+				         	{{ Form::text('title','',array('placeholder' => 'Makale Başlık', 'required' => '' , 'class' => 'col-md-4 form-control')) }}
 				        </div>
 				    </div>
 
-					<div class="control-group">
-				        <label for="summary" class="control-label">Özet </label>
-				        <div class="controls">
+					<div class="row">
+				        <label for="summary" class="control-label col-md-12">Özet </label>
+				        <div class="col-md-12">
 				         	{{ Form::textarea('summary','',array('placeholder' => 'İçerik','id' => 'articleSummary')) }}
 				        </div>
 				    </div>
 
-					<div class="control-group">
-				        <label for="content" class="control-label">İçerik </label>
-				        <div class="controls">
+					<div class="row">
+				        <label for="content" class="control-label col-md-12">İçerik </label>
+				        <div class="col-md-12">
 				         	{{ Form::textarea('content','',array('placeholder' => 'İçerik','id' => 'articleContent')) }}
 				        </div>
 				    </div>
@@ -82,7 +79,7 @@
 	        			<tr>
 	        				<td colspan="4">
 	        					<div class="row pull-right text-right">
-	        						<button type="button" class="btn" onclick="javascript:addImage()">Yeni Resim</button>
+	        						<button type="button" class="btn btn-warning" onclick="javascript:addImage()">Yeni Resim</button>
 	        					</div>
 	        				</td>
 	        			</tr>
@@ -107,7 +104,7 @@
 		{
 			html   = '<tr id="image-row' + image_row + '">';
 			html += '<td class="centered"><input type="hidden" name="medias[' + image_row + '][name]" value="" id="image' + image_row + '" /><input type="hidden" name="medias[' + image_row + '][path]" value="" id="image' + image_row +'_path" /><input type="hidden" name="medias[' + image_row + '][base_url]" value="" id="image' + image_row +'_base_url" /><img src="<?php echo Request::root().'/assets/thumbnail.php?src=&w=100&h=100&zc=1'?>" alt="" id="preview' + image_row + '" class="image" onclick="image_upload(\'image' + image_row + '\', \'preview' + image_row + '\');" /></td>';
-			html += '<td class="centered"><input type="text" name="medias[' + image_row + '][sort_order]" class="span1 text-right" value="1" /></td>';			
+			html += '<td class="centered"><input type="text" name="medias[' + image_row + '][sort_order]" class="col-md-2 text-right local-form-control" value="1" /></td>';			
 			html += '<td class="centered"><input type="button" class="btn btn-danger pull-right" value="Sil" onclick="$(\'#image-row' + image_row  + '\').remove();"></td>';
 			html += '</tr>';
 			
