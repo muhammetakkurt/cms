@@ -122,7 +122,8 @@
 	        			<tbody>
 	        				@foreach($page->articles as $article)
 		        				<tr>
-		        					<td><a href="{{URL::to('cms-articles/'.$article->id)}}">{{$article->title}}</a></td>
+		        					<td><a href="{{URL::to('cms-articles/'.$article->id.'/edit')}}">{{$article->title}}</a></td>
+		        					<td></td>
 		        				</tr>
 	        				@endforeach
 	        			</tbody>
