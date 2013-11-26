@@ -115,6 +115,8 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		/*Sentry 2 Eklentisi*/
 		'Cartalyst\Sentry\SentryServiceProvider',
+		/*Profiler*/
+		'Profiler\ProfilerServiceProvider',
 
 	),
 
@@ -182,6 +184,8 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
 		/*Sentry 2 Eklentisi*/
 		'Sentry' => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
+		//Profiler
+		'Profiler' => 'Profiler\Facades\Profiler',
 
 	),
 
